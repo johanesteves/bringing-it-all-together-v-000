@@ -7,11 +7,6 @@ class Dog
     @breed = breed
   end
 
-  def self.create (name:, breed:)
-    #binding.pry
-    new_dog = Dog.new(name: name, breed: breed).tap {|dog| dog.save}
-  end
-
   def self.create_table
     sql = <<-SQL
     CREATE TABLE IF NOT EXISTS dogs (
@@ -30,6 +25,11 @@ class Dog
     SQL
 
     DB[:conn].execute(sql)
+  end
+
+
+  def self.create (name:, breed:)
+    new_dog = Dog.new(name: name, breed: breed).tap {|dog| dog.save}
   end
 
   def self.new_from_db(row) #row will be an Array [id, name, breed]
@@ -54,8 +54,17 @@ class Dog
     self.new_from_db(DB[:conn].execute(sql,name).first)
   end
 
-  def self.find_or_create_by(instance)
+  def self.find_or_create_by(name:, breed:)
+    dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ?, breed = ?", name, breed)
 
+    if !dog.empty? #if found in DB (returns something/not empty)
+      dog_id = dog[0]
+      dog = Dog.new()
+    else #if not found, create and save an new dog instance
+      dog self.create(name:, breed:)
+    end
+    
+    dog  
   end
 
   def update #instance method
