@@ -62,7 +62,7 @@ class Dog
     else #if not found, create and save an new dog instance
       dog = self.create(name: name, breed: breed)
     end
-
+    binding.pry
     dog
   end
 
