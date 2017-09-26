@@ -34,11 +34,11 @@ class Dog
 
   def self.new_from_db(row) #row will be an Array [id, name, breed]
     sql = <<-SQL
-    INSERT INTO dogs (name, breed)
+    INSERT INTO dogs(name, breed)
     VALUES (?, ?)
     )
     SQL
-
+    binding.pry
     DB[:conn].execute(sql, row[1], row[2])
   end
 
