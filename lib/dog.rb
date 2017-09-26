@@ -61,7 +61,7 @@ class Dog
       dog_id = dog[0]
       dog = Dog.new(id: dog[0], name: dog[1], breed: dog[2])
     else #if not found, create and save an new dog instance
-      dog self.create(name, breed)
+      dog self.create(name: name, breed: breed)
     end
 
     dog
