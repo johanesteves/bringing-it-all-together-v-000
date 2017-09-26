@@ -42,7 +42,7 @@ class Dog
     WHERE name = ?
     LIMIT 1
     SQL
-
+    binding.pry
     DB[:conn].execute(sql,name).each {|row| self.new_from_db(row)}
   end
 
