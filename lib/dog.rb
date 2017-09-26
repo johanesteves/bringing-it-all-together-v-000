@@ -8,7 +8,7 @@ class Dog
   end
 
   def self.create (name:, breed:)
-    
+    new_dog = Dog.new(name, breed).tap {|dog| dog.save}
   end
 
   def self.create_table
