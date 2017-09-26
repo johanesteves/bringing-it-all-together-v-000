@@ -39,7 +39,7 @@ class Dog
 
   def self.find_by_name(name)
     sql = <<-SQL
-    SELECT * FROM dogs 
+    SELECT * FROM dogs
     WHERE name = ?
     LIMIT 1
     SQL
@@ -47,7 +47,7 @@ class Dog
     DB[:conn].execute(sql,name).each {|row| self.new_from_db(row)}
   end
 
-  def update #instance method 
+  def update #instance method
     sql = <<-SQL
     UPDATE dogs SET name = ?, breed = ?
     WHERE id = ?
@@ -55,21 +55,21 @@ class Dog
     SQL
 
     DB[:conn].execute(sql,self.name, self.breed, self.id)
-
-    @id = DB[:conn].execute("SELECT last_insert_rowid()")[0][0]
   end
 
   def save
     if self.id
       self.update
     else
-      
+
     sql = <<-SQL
     INSERT INTO dogs (name, breed)
     VALUES (?, ?)
     SQL
 
     DB[:conn].execute(sql,self.name, self.breed)
+
+    @id = DB[:conn].execute("SELECT last_insert_rowid()")[0][0]
   end
 
 
