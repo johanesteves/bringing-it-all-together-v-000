@@ -9,7 +9,7 @@ class Dog
 
   def self.create (name:, breed:)
     binding.pry
-    new_dog = Dog.new(name, breed).tap {|dog| dog.save}
+    new_dog = Dog.new(name: name, breed: breed).tap {|dog| dog.save}
   end
 
   def self.create_table
