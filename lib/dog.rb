@@ -59,7 +59,7 @@ class Dog
 
     if !dog.empty? #if found in DB (returns something/not empty)
       dog_id = dog[0]
-      dog = Dog.new(dog[0], dog[1], dog[2])
+      dog = Dog.new(id: dog[0], name: dog[1], breed: dog[2])
     else #if not found, create and save an new dog instance
       dog self.create(name, breed)
     end
