@@ -54,6 +54,10 @@ class Dog
     self.new_from_db(DB[:conn].execute(sql,name).first)
   end
 
+  def self.find_or_create_by(instance)
+
+  end
+
   def update #instance method
     sql = <<-SQL
     UPDATE dogs SET name = ?, breed = ?
