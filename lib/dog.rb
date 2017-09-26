@@ -8,7 +8,7 @@ class Dog
   end
 
   def self.create (name:, breed:)
-    binding.pry
+    #binding.pry
     new_dog = Dog.new(name: name, breed: breed).tap {|dog| dog.save}
   end
 
