@@ -43,7 +43,7 @@ class Dog
     LIMIT 1
     SQL
     binding.pry
-    DB[:conn].execute(sql,name).each {|row| self.new_from_db(row)}
+    DB[:conn].execute(sql,name)[0].collect {|row| self.new_from_db(row)}
   end
 
   def update #instance method
