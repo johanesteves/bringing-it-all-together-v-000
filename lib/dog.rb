@@ -37,7 +37,6 @@ class Dog
     INSERT INTO dogs(name, breed)
     VALUES (?, ?)
     SQL
-    binding.pry
     DB[:conn].execute(sql, row[1], row[2])
   end
 
